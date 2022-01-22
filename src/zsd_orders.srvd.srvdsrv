@@ -1,0 +1,5 @@
+@EndUserText.label: 'Orders'
+define service ZSD_ORDERS {
+  expose ZC_ORDERS as Orders;
+  expose ZC_Items as Items;
+}

@@ -1,0 +1,56 @@
+@Metadata.layer: #CORE
+@Search.searchable: true
+@UI: {
+    headerInfo: {
+        typeName        : 'Orders',
+        typeNamePlural  : 'Sales Orders', title: { type: #STANDARD, value: 'Id' } } }
+annotate entity ZC_ORDERS with
+{
+  @UI.facet: [{ id        : 'Orders',
+                purpose   : #STANDARD,
+                type      : #IDENTIFICATION_REFERENCE,
+                label     : 'Sales Order Header',
+                position  : 10 },
+              { id            : 'Items',
+                purpose       : #STANDARD,
+                type          : #LINEITEM_REFERENCE,
+                label         : 'Sales Order Items',
+                position      : 20,
+                targetElement : '_Items'}]
+  @UI: {
+      lineItem        : [{ position: 10, importance: #HIGH }],
+      identification  : [{ position: 10, label: 'Order ID' }]}
+  Id;
+  @UI: {
+      lineItem        : [{ position: 20, importance: #HIGH }],
+      identification  : [{ position: 20, label: 'Email' }]}
+  Email;
+  @Search.defaultSearchElement: true
+  @UI: {
+      lineItem        : [{ position: 30, importance: #HIGH }],
+      identification  : [{ position: 30, label: 'First Name' }]}
+  FirstName;
+  @UI: {
+      lineItem        : [{ position: 40, importance: #HIGH }],
+      identification  : [{ position: 40, label: 'Last Name' }]}
+  LastName;
+  @UI: {
+      lineItem        : [{ position: 50, importance: #HIGH }],
+      identification  : [{ position: 50, label: 'Country' }]}
+  Country;
+  @UI: {
+      lineItem        : [{ position: 60, importance: #HIGH }],
+      identification  : [{ position: 60, label: 'Created On' }]}
+  CreatedOn;
+  @UI: {
+      lineItem        : [{ position: 70, importance: #HIGH }],
+      identification  : [{ position: 70, label: 'Delivery Date' }]}
+  DeliveryDate;
+  @UI: {
+       lineItem        : [{ position: 80, importance: #HIGH, criticality: 'OrderStatus' }],
+       identification  : [{ position: 80, label: 'Order Status' }],
+       textArrangement: #TEXT_ONLY }
+  StatusCriticality;
+  @UI.hidden: true
+  ImageUrl;
+}

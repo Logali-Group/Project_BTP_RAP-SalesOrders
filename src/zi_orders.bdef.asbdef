@@ -1,0 +1,26 @@
+managed implementation in class zbp_i_orders unique;
+strict;
+
+define behavior for ZI_ORDERS alias Orders
+persistent table ZTB_ORDERS
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  association _Items { create; }
+}
+
+define behavior for ZI_ITEMS alias Items
+persistent table ZTB_ITEMS
+lock dependent by _Orders
+authorization dependent by _Orders
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) Id;
+  association _Orders;
+}
